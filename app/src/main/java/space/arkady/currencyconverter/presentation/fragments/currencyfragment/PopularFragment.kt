@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -63,6 +64,15 @@ class PopularFragment : Fragment(R.layout.fragment_currency) {
             popularViewModel.setSearchValue(query)
         }
     }
+    private fun switchNightMode() {
+       binding.switchMaterial.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (buttonView.isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+    }
 
 
     override fun onCreateView(
@@ -76,7 +86,10 @@ class PopularFragment : Fragment(R.layout.fragment_currency) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        switchNightMode()
     }
+
+
 
     private fun initView() {
         binding.sortImageButton.setOnClickListener { view: View ->

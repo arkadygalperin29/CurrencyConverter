@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.favoritefragment.FavoriteFragment">
 
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switchMaterial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:checked="false"
+        app:layout_constraintBottom_toTopOf="@+id/headerCurrencyColumn"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <Spinner
         android:id="@+id/spinnerCurrency"
         android:layout_width="0dp"
@@ -17,7 +27,7 @@
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/sortImageButton"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/switchMaterial"
         app:layout_constraintTop_toTopOf="parent" />
 
 
