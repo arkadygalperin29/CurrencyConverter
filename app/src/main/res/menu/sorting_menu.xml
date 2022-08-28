@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/sortByAlphabet"
+        android:icon="@drawable/ic_baseline_arrow_downward_24"
+        android:title="@string/alphabet_order_string" />
+    <item
+        android:id="@+id/sortByAlphabetReverse"
+        android:icon="@drawable/ic_baseline_arrow_upward_24"
+        android:title="@string/reverse_alphabetical_order_string" />
+    <item
+        android:id="@+id/sortByPriceLowest"
+        android:icon="@drawable/ic_baseline_arrow_downward_24"
+        android:title="@string/price_lowest_string" />
+    <item
+        android:id="@+id/sortByPriceHighest"
+        android:icon="@drawable/ic_baseline_arrow_upward_24"
+        android:title="@string/price_highest_string" />
+</menu>
