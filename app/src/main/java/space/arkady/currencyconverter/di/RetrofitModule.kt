@@ -6,11 +6,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import space.arkady.currencyconverter.common.Constants
 import space.arkady.currencyconverter.data.remote.ExchangeApiService
 import tech.thdev.network.flowcalladapterfactory.FlowCallAdapterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -25,11 +27,24 @@ object RetrofitModule {
     @Singleton
     fun provideGsonConverter(gson: Gson): GsonConverterFactory = GsonConverterFactory.create(gson)
 
+
     @Provides
     @Singleton
-    fun provideRetrofitInstance(gsonConverterFactory: GsonConverterFactory): Retrofit {
+    fun provideOkhttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
+            .build()
+    }
+
+
+
+    @Provides
+    @Singleton
+    fun provideRetrofitInstance(gsonConverterFactory: GsonConverterFactory, httpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(Constants.BASE_URL)
+            .client(httpClient)
             .addConverterFactory(gsonConverterFactory)
             .addCallAdapterFactory(FlowCallAdapterFactory())
             .build()

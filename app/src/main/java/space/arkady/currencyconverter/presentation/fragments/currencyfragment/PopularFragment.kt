@@ -14,15 +14,12 @@ import kotlinx.coroutines.flow.onEach
 import space.arkady.currencyconverter.R
 import space.arkady.currencyconverter.common.Constants
 import space.arkady.currencyconverter.databinding.FragmentCurrencyBinding
-import space.arkady.currencyconverter.domain.model.CurrencyItem
-import space.arkady.currencyconverter.domain.model.FavoriteCurrency
 import space.arkady.currencyconverter.presentation.fragments.currencyfragment.popular_adapter.PopularAdapter
 import space.arkady.currencyconverter.presentation.listeners.AddFavoriteClickListener
 import space.arkady.currencyconverter.presentation.listeners.DeleteFavoriteClickListener
 import space.arkady.currencyconverter.presentation.listeners.SortListener
 import space.arkady.currencyconverter.presentation.listeners.SpinnerListener
 import space.arkady.currencyconverter.presentation.sortmenu.SortMenu
-import space.arkady.currencyconverter.presentation.sortmenu.SortingTypes
 import space.arkady.currencyconverter.presentation.spinner.Spinner
 import space.arkady.currencyconverter.presentation.utils.toFavoriteCurrency
 
@@ -41,32 +38,25 @@ class PopularFragment : Fragment(R.layout.fragment_currency) {
         fun newInstance() = PopularFragment()
     }
 
-    private val addFavoriteCurrency = object : AddFavoriteClickListener {
-        override fun actionClick(currencyItem: CurrencyItem) {
-            popularViewModel.addFavorite(currencyItem.toFavoriteCurrency())
-        }
-    }
+    private val addFavoriteCurrency =
+        AddFavoriteClickListener { currencyItem -> popularViewModel.addFavorite(currencyItem.toFavoriteCurrency()) }
 
-    private val deleteFavoriteCurrency = object : DeleteFavoriteClickListener {
-        override fun clickAction(favoriteCurrency: FavoriteCurrency) {
-            popularViewModel.deleteFavorite(favoriteCurrency)
+    private val deleteFavoriteCurrency =
+        DeleteFavoriteClickListener { favoriteCurrency ->
+            popularViewModel.deleteFavorite(
+                favoriteCurrency
+            )
         }
-    }
 
-    private val sortListener = object : SortListener {
-        override fun clickAction(sortingTypes: SortingTypes) {
-            popularViewModel.sortCurrency(sortingTypes)
-        }
-    }
+    private val sortListener =
+        SortListener { sortingTypes -> popularViewModel.sortCurrency(sortingTypes) }
 
-    private val spinnerListener = object : SpinnerListener {
-        override fun clickAction(query: String) {
-            popularViewModel.setSearchValue(query)
-        }
-    }
+    private val spinnerListener =
+        SpinnerListener { query -> popularViewModel.setSearchValue(query) }
+
     private fun switchNightMode() {
-       binding.switchMaterial.setOnCheckedChangeListener { buttonView, isChecked ->
-            if (buttonView.isChecked) {
+        binding.switchMaterial.setOnCheckedChangeListener {_, isChecked ->
+            if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -88,7 +78,6 @@ class PopularFragment : Fragment(R.layout.fragment_currency) {
         initView()
         switchNightMode()
     }
-
 
 
     private fun initView() {
