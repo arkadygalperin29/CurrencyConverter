@@ -54,15 +54,16 @@ class PopularFragment : Fragment(R.layout.fragment_currency) {
     private val spinnerListener =
         SpinnerListener { query -> popularViewModel.setSearchValue(query) }
 
-    private fun switchNightMode() {
-        binding.switchMaterial.setOnCheckedChangeListener {_, isChecked ->
+/*    private fun switchNightMode() {
+        binding.switchMaterial.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
-    }
+    }*/
+
 
 
     override fun onCreateView(
@@ -76,8 +77,18 @@ class PopularFragment : Fragment(R.layout.fragment_currency) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        switchNightMode()
     }
+
+
+/*   private fun switchNightMode() {
+        binding.switchMaterial.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            }
+        }
+    }*/
 
 
     private fun initView() {

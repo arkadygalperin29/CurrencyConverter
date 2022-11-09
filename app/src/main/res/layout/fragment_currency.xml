@@ -6,23 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".presentation.fragments.currencyfragment.PopularFragment">
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switchMaterial"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingTop="16dp"
-        android:checked="false"
-        app:layout_constraintBottom_toTopOf="@+id/headerCurrencyColumn"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Spinner
         android:id="@+id/spinnerCurrency"
-        android:layout_width="0dp"
+        android:layout_width="260dp"
         android:layout_height="32dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/frame"
         android:imeOptions="actionSearch"
         android:padding="8dp"
         android:singleLine="true"
+        android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/sortImageButton"
@@ -34,10 +27,11 @@
         android:id="@+id/sortImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:src="@drawable/ic_baseline_sort_24"
         app:layout_constraintBottom_toBottomOf="@id/spinnerCurrency"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/spinnerCurrency" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/headerCurrencyColumn"

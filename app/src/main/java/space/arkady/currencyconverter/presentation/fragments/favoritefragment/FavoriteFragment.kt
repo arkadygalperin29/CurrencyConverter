@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.appcompat.app.AppCompatDelegate.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,13 +14,11 @@ import kotlinx.coroutines.flow.onEach
 import space.arkady.currencyconverter.R
 import space.arkady.currencyconverter.common.Constants
 import space.arkady.currencyconverter.databinding.FragmentFavoriteBinding
-import space.arkady.currencyconverter.domain.model.FavoriteCurrency
 import space.arkady.currencyconverter.presentation.fragments.favoritefragment.favoriteadapter.FavoriteAdapter
 import space.arkady.currencyconverter.presentation.listeners.DeleteFavoriteClickListener
 import space.arkady.currencyconverter.presentation.listeners.SortListener
 import space.arkady.currencyconverter.presentation.listeners.SpinnerListener
 import space.arkady.currencyconverter.presentation.sortmenu.SortMenu
-import space.arkady.currencyconverter.presentation.sortmenu.SortingTypes
 import space.arkady.currencyconverter.presentation.spinner.Spinner
 
 
@@ -40,7 +37,11 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
     }
 
     private val deleteFavoriteCurrency =
-        DeleteFavoriteClickListener { favoriteCurrency -> favoriteViewModel.deleteFavorite(favoriteCurrency) }
+        DeleteFavoriteClickListener { favoriteCurrency ->
+            favoriteViewModel.deleteFavorite(
+                favoriteCurrency
+            )
+        }
 
     private val sortListener =
         SortListener { sortingTypes -> favoriteViewModel.sortCurrency(sortingTypes) }
@@ -59,18 +60,8 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        switchNightMode()
     }
 
-    private fun switchNightMode() {
-        binding.switchMaterial.setOnCheckedChangeListener {_, isChecked ->
-            if (isChecked) {
-                setDefaultNightMode(MODE_NIGHT_YES)
-            } else {
-                setDefaultNightMode(MODE_NIGHT_NO)
-            }
-        }
-    }
 
     private fun initView() {
         binding.sortImageButton.setOnClickListener { view: View ->
